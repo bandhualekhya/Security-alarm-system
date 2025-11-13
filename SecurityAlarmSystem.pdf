@@ -1,0 +1,60 @@
+import java.util.Scanner;
+
+public class SecurityAlarmSystem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        boolean systemActive = false;
+        String password = "1234";
+
+        while (true) {
+            System.out.println("\n=== SECURITY ALARM MENU ===");
+            System.out.println("1. Activate System");
+            System.out.println("2. Deactivate System");
+            System.out.println("3. Trigger Sensor");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter PIN to activate: ");
+                    String pin1 = sc.next();
+                    if (pin1.equals(password)) {
+                        systemActive = true;
+                        System.out.println("🔒 Alarm system ACTIVATED.");
+                    } else {
+                        System.out.println("❌ Wrong PIN!");
+                    }
+                    break;
+
+                case 2:
+                    System.out.print("Enter PIN to deactivate: ");
+                    String pin2 = sc.next();
+                    if (pin2.equals(password)) {
+                        systemActive = false;
+                        System.out.println("🔓 Alarm system DEACTIVATED.");
+                    } else {
+                        System.out.println("❌ Wrong PIN!");
+                    }
+                    break;
+
+                case 3:
+                    if (systemActive) {
+                        System.out.println("🚨 ALERT! Sensor triggered! ALARM ON!");
+                    } else {
+                        System.out.println("System is OFF. No alarm triggered.");
+                    }
+                    break;
+
+                case 4:
+                    System.out.println("Exiting system...");
+                    sc.close();
+                    return;
+
+                default:
+                    System.out.println("Invalid choice. Try again.");
+            }
+        }
+    }
+}
+
